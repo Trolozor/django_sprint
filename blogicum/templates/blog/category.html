@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Публикации в категории - {{ category_slug }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1 class="main-title">Blogicum</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'blog:index' %}">Главная</a></li>
+                <li><a href="{% url 'pages:about' %}">О нас</a></li>
+                <li><a href="{% url 'pages:rules' %}">Наши правила</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Публикации в категории - {{ category_slug }}</h2>
+        {% for post in posts %}
+            <article class="post">
+                <h3>{{ post.location }}</h3>
+                <p class="post-meta">Дата: {{ post.date }} | Категория: {{ post.category }}</p>
+                <p>{{ post.text|truncatewords:30 }}</p>
+                <a href="{% url 'blog:post_detail' post.id %}" class="read-more">Читать полный текст</a>
+            </article>
+        {% endfor %}
+    </main>
+    <footer>
+        <p>&copy; 2023 Blogicum</p>
+    </footer>
+</body>
+</html>
