@@ -1,2 +1,1 @@
-# Blogicum# django_sprint
-# django_sprint
+# Blogicum
